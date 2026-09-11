@@ -1265,17 +1265,16 @@
       <button onclick="mobileNavigateTo('storeCatalogSection')">Shop Collection</button>
       <button onclick="mobileNavigateTo('storySection')">Our Story</button>
       <button onclick="mobileNavigateTo('contactFooter')">Contact</button>
-      <button id="mobileSellerStudioLink" style="display: none; color: var(--primary-maroon);" onclick="openSellerViewFromDrawer()">📦 Seller Studio</button>
+      <button id="mobileSellerStudioLink" style="display: block; color: var(--primary-maroon);" onclick="openSellerViewFromDrawer()">📦 Seller Studio</button>
     </div>
     <div style="margin-top:auto; padding-top:20px; border-top:1px solid var(--border-color);" id="mobileAuthArea">
-          <button class="btn-action-small" style="width:100%; justify-content:center;" onclick="openCustomerAuthModal()">
-            Customer Sign In
-          </button>
+          <div style="margin-bottom:8px; font-size:12px; font-weight:700; color:var(--primary-maroon);">Logged in as Seller</div>
+          <button class="btn-action-small" style="width:100%; color:#c5221f;" onclick="logout()">Logout of Seller</button>
         </div>
   </aside>
 
   <!-- ==================== 1. CUSTOMER STOREFRONT VIEW ==================== -->
-  <div id="viewCustomer" class="view-panel">
+  <div id="viewCustomer" class="view-panel active">
     <header class="store-nav">
       <div style="display:flex; align-items:center; gap:10px;">
         <button class="menu-btn" id="menuToggleBtn" onclick="openMobileDrawer()" aria-label="Open Navigation">☰</button>
@@ -1296,14 +1295,14 @@
       </ul>
 
       <div class="nav-actions">
-        <button class="btn-seller-studio-link" id="headerSellerStudioBtn" style="display: none;" onclick="showSellerView('catalog')">
+        <button class="btn-seller-studio-link" id="headerSellerStudioBtn" style="display: inline-block;" onclick="showSellerView('catalog')">
           Seller Studio
         </button>
         <div id="headerAuthArea">
-          <button class="btn-action-small" onclick="openCustomerAuthModal()">
-            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"></path><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"></path><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"></path><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"></path></svg>
-            Sign In
-          </button>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span style="font-size:12px; font-weight:700; color:var(--primary-maroon);">👑 Studio</span>
+            <button class="btn-action-small" onclick="logout()">Logout</button>
+          </div>
         </div>
         <button class="cart-btn" onclick="toggleCartDrawer(true)" aria-label="Cart">
           🛒
@@ -1480,14 +1479,15 @@
               Authorized inventory &amp; order fulfillment access.
             </p>
             <div id="footerSellerActionArea">
-          <button class="btn-footer-seller" onclick="openSellerAuthModal()">Seller Sign In →</button>
+          <button class="btn-footer-seller" onclick="showSellerView('catalog')">Open Studio →</button>
+          <button class="btn-action-small" style="margin-top:6px; font-size:10.5px; padding:4px 10px;" onclick="logout()">Logout</button>
         </div>
           </div>
         </div>
 
         <div class="footer-sub-strip">
           <span id="storeFooterCopyright">© 2026 DAFFODILS</span>
-          <span id="storeFooterSubTag">MADE FOR THE STORIES YOU WEAR</span>
+          <span>MADE FOR THE STORIES YOU WEAR</span>
         </div>
       </div>
     </footer>
@@ -1555,7 +1555,7 @@
   </div>
 
   <!-- ==================== 2. SELLER STUDIO VIEW ==================== -->
-  <div id="viewSeller" class="view-panel active">
+  <div id="viewSeller" class="view-panel">
     <div class="seller-wrapper">
       <aside class="seller-aside">
         <div style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 16px;">NAVIGATION</div>
@@ -1580,7 +1580,7 @@
         </div>
 
         <!-- Catalog Tab -->
-        <div id="sellerPanelCatalog" class="seller-card" style="display: none;">
+        <div id="sellerPanelCatalog" class="seller-card">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:8px;">
             <div>
               <div style="font-size:10px; font-weight:700; color:var(--primary-maroon); text-transform:uppercase;">Daily Catalogue</div>
@@ -1757,7 +1757,7 @@
         </div>
 
         <!-- Customise Storefront Tab -->
-        <div id="sellerPanelCustomise" class="seller-card" style="display: block;">
+        <div id="sellerPanelCustomise" class="seller-card" style="display:none;">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 20px; flex-wrap:wrap; gap:10px;">
             <div>
               <h2 style="font-family:var(--font-serif); font-size:26px;">Storefront Customiser</h2>
@@ -1917,7 +1917,7 @@
     </div>
   </div>
 
-  <!-- ==================== 4. SHOPPING CART DRAWER (WITH SLIDE / CUSTOM NAME INPUT) ==================== -->
+  <!-- ==================== 4. SHOPPING CART DRAWER ==================== -->
   <div class="drawer-scrim" id="cartScrim" onclick="toggleCartDrawer(false)"></div>
   <aside class="cart-drawer-layer" id="cartDrawer">
     <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color); padding-bottom:12px;">
@@ -1940,7 +1940,7 @@
     </div>
   </aside>
 
-  <!-- ==================== 5. CHECKOUT MODAL WITH AUTOFILL ==================== -->
+  <!-- ==================== 5. CHECKOUT MODAL ==================== -->
   <div class="modal-backdrop" id="checkoutModal">
     <div class="modal-box-inner">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
@@ -1973,7 +1973,7 @@
     </div>
   </div>
 
-  <!-- ==================== 6. SELLER PRODUCT EDIT MODAL (WITH AVAILABILITY PERIOD) ==================== -->
+  <!-- ==================== 6. SELLER PRODUCT EDIT MODAL ==================== -->
   <div class="modal-backdrop" id="editProductModal">
     <div class="modal-box-inner" style="max-width: 540px;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
@@ -2028,7 +2028,6 @@
         <label style="font-size:10px; font-weight:700; text-transform:uppercase;">Description</label>
         <textarea class="input-field" id="editFormDesc" rows="3" required=""></textarea>
 
-        <!-- Media Upload & Thumbnails with (X) -->
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
           <label style="font-size:10px; font-weight:700; text-transform:uppercase;">Carousel Media (Photos &amp; Videos)</label>
           <label class="btn-action-small" style="font-size:10px; padding:4px 8px; cursor:pointer;">
@@ -2141,7 +2140,7 @@ https://..."></textarea>
       return new Date() > expiry;
     }
 
-    /* DEFAULT BASE STATE TEMPLATE (Employed on first paint & revert) */
+    /* DEFAULT STATE BASE */
     const defaultState = {
   "userRole": "guest",
   "userName": "",
@@ -2257,6 +2256,115 @@ https://..."></textarea>
   ]
 };
 
+    /* STORAGE ENGINE */
+    const STORAGE_KEY = "daffodils_store_data_v1";
+
+    function saveStateToStorage() {
+      try {
+        const payload = {
+          categories: state.categories,
+          storeConfig: state.storeConfig,
+          customers: state.customers,
+          orders: state.orders,
+          products: state.products
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      } catch (err) {
+        console.warn("Storage write error:", err);
+      }
+    }
+
+    function loadStateFromStorage() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.storeConfig) state.storeConfig = Object.assign({}, defaultState.storeConfig, parsed.storeConfig);
+          if (parsed.categories) state.categories = parsed.categories;
+          if (parsed.customers) state.customers = parsed.customers;
+          if (parsed.orders) state.orders = parsed.orders;
+          if (parsed.products) state.products = parsed.products;
+          return;
+        }
+      } catch (err) {
+        console.warn("Storage read error:", err);
+      }
+      state.storeConfig = JSON.parse(JSON.stringify(defaultState.storeConfig));
+      state.categories = JSON.parse(JSON.stringify(defaultState.categories));
+      state.customers = JSON.parse(JSON.stringify(defaultState.customers));
+      state.orders = JSON.parse(JSON.stringify(defaultState.orders));
+      state.products = JSON.parse(JSON.stringify(defaultState.products));
+    }
+
+    function resetStoreCustomisationsToDefault() {
+      if (!confirm("Are you sure you want to revert all storefront customisations, theme colors, and banner images to defaults?")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      state.storeConfig = JSON.parse(JSON.stringify(defaultState.storeConfig));
+      applyStoreConfig();
+      renderProductGrid();
+      showCustomerView();
+      alert("Storefront reverted to default settings!");
+    }
+
+    /* -----------------------------------------------------------------------------------
+       DOWNLOAD PRODUCTION HTML: CLEANS SELLER DOM SO STOREFRONT OPENS AS LANDING PAGE
+    ------------------------------------------------------------------------------------*/
+    function downloadProductionHTMLFile() {
+      saveStateToStorage();
+
+      // Read current HTML document
+      let fullHtml = document.documentElement.outerHTML;
+
+      // Ensure that in the exported file, the view states are strictly reset to default visitor view:
+      fullHtml = fullHtml.replace('id="viewSeller" class="view-panel active"', 'id="viewSeller" class="view-panel"');
+      fullHtml = fullHtml.replace('id="viewCustomer" class="view-panel"', 'id="viewCustomer" class="view-panel active"');
+      fullHtml = fullHtml.replace(/id="sellerPanelCustomise" class="seller-card" style="display:\s*block;*"/g, 'id="sellerPanelCustomise" class="seller-card" style="display:none;"');
+      fullHtml = fullHtml.replace(/id="sellerPanelCatalog" class="seller-card" style="display:\s*none;*"/g, 'id="sellerPanelCatalog" class="seller-card"');
+
+      // Construct customized state dump
+      const stateDump = {
+        userRole: 'guest',
+        userName: '',
+        cart: [],
+        categories: state.categories,
+        storeConfig: state.storeConfig,
+        customers: state.customers,
+        orders: state.orders,
+        products: state.products
+      };
+
+      // Replace defaultState definition in the file with your active customized state
+      const findPattern = /const defaultState = \{[\s\S]*?\n    \};/;
+      const newDefinition = `const defaultState = ${JSON.stringify(stateDump, null, 2)};`;
+
+      if (findPattern.test(fullHtml)) {
+        fullHtml = fullHtml.replace(findPattern, newDefinition);
+      }
+
+      const blob = new Blob(["<!DOCTYPE html>\n" + fullHtml], { type: "text/html" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "index.html";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      alert("🎉 Updated index.html downloaded!\n\nWhen uploaded to GitHub, this site will open directly on the storefront shop page with all your customisations active for every visitor!");
+    }
+
+    let state = {
+      userRole: 'guest',
+      userName: '',
+      cart: [],
+      categories: [],
+      storeConfig: {},
+      customers: [],
+      orders: [],
+      products: []
+    };
+
     let carouselIndices = {};
     let currentDetailsProductId = null;
     let detailsSlideIndex = 0;
@@ -2356,7 +2464,7 @@ https://..."></textarea>
       saveStateToStorage();
       applyStoreConfig();
       renderProductGrid();
-      alert("Customisations saved locally! Click 'Publish: Download Updated HTML' to make them default for all customers worldwide.");
+      alert("Customisations saved! Click 'Publish: Download Updated HTML' to make them default for all customers worldwide.");
     }
 
     function handleStoreBannerUpload(event, targetInputId) {
@@ -2948,6 +3056,7 @@ https://..."></textarea>
             renderSellerCatalog();
             renderSellerOrders();
             renderSellerOverview();
+            showCustomerView();
             alert("All store data restored successfully from backup!");
           } else {
             alert("Invalid backup file format!");
@@ -3204,13 +3313,14 @@ https://..."></textarea>
       }, { passive: false });
     }
 
-    // Initialize from persistent storage on load
+    // Initialize from persistent storage & enforce Storefront landing page
     loadStateFromStorage();
     applyStoreConfig();
     populateCategoryDropdowns();
     updateAuthUI();
     renderProductGrid();
     renderCartUI();
+    showCustomerView();
   </script>
 
 </body></html>
